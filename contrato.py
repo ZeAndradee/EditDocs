@@ -34,6 +34,7 @@ def replace_strings_in_docx(input_dir_path, output_dir_path, file_name, replacem
 
 #Recebo os dados do contrato
 IdLocatario = input('Digite o número de identidade do locatário: ')
+SexoLocatario = input('Digite o sexo do locatário (F/M): ')
 NomeLocatario = input('Digite o nome do locatário: ')
 CpfLocatario = input('Digite o CPF do locatário: ')
 CargoLocatario = input('Digite o cargo do locatário: ')
@@ -43,6 +44,19 @@ ValorAluguel = input('Digite o valor do aluguel: ')
 
 #Crio o objeto contrato1 com os dados recebidos
 contrato1 = DadosContrato(NomeLocatario, CargoLocatario, CpfLocatario, IdLocatario, RendaLocatario, DataInicioContrato, ValorAluguel)
+
+if (SexoLocatario == 'F'):
+    srsexloc = 'Sra'
+    osex = 'a'
+    sexloc = 'Locatária'
+    nascionalidadesex = 'brasileira'
+else:
+    srsexloc = 'Sr'
+    osex = 'o'
+    sexloc = 'Locatário'
+    nascionalidadesex = 'brasileiro'
+
+locatarioM = contrato1.nomelocatario.upper()
 
 #Formata a data de inicio do contrato
 currentDate = datetime.datetime.now()
@@ -71,7 +85,7 @@ for i in range(6):
     notas_promissorias[f'ano{i+1}'] = ano
 
 
-replacements = {'nomelocatario': contrato1.nomelocatario, 'cargolocatario': contrato1.cargolocatario, 'cpflocatario': contrato1.cpflocatario, 'idlocatario': contrato1.idlocatario, 'rendalocatario': contrato1.rendalocatario, 'mesatual': mesAtual, 'anoatual': anoAtual, 'datainiciocontrato':str(contrato1.datainiciocontrato),'valoraluguel':contrato1.valoraluguel, 'diainicio':dia, 'mesinicio':str(mesInicioContrato), 'anoinicio':ano, 'diafinal':fdia, 'mesfinal':str(mesFimContrato), 'anofinal':fano}
+replacements = {'LOCATARIO': locatarioM,'nomelocatario': contrato1.nomelocatario, 'cargolocatario': contrato1.cargolocatario, 'cpflocatario': contrato1.cpflocatario, 'idlocatario': contrato1.idlocatario, 'rendalocatario': contrato1.rendalocatario, 'mesatual': mesAtual, 'anoatual': anoAtual, 'datainiciocontrato':str(contrato1.datainiciocontrato),'valoraluguel':contrato1.valoraluguel, 'diainicio':dia, 'mesinicio':str(mesInicioContrato), 'anoinicio':ano, 'diafinal':fdia, 'mesfinal':str(mesFimContrato), 'anofinal':fano, 'srsexloc':srsexloc, 'nascionalidadesex':nascionalidadesex, 'osex':osex, 'sexloc':sexloc,}
 replacements = {**replacements, **notas_promissorias}
 
 replace_strings_in_docx('C:\\Users\\vinci\\Documents\\Contratos Aluguel', 'C:\\Users\\vinci\\Documents\\Contratos Aluguel\\Output', 'CONTRATO CASA 01 A.docx', replacements)
