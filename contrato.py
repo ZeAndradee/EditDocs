@@ -33,10 +33,10 @@ def replace_strings_in_docx(input_dir_path, output_dir_path, file_name, replacem
     doc.save(output_doc_path)
 
 #Recebo os dados do contrato
+IdLocatario = input('Digite o número de identidade do locatário: ')
 NomeLocatario = input('Digite o nome do locatário: ')
-CargoLocatario = input('Digite o cargo do locatário: ')
 CpfLocatario = input('Digite o CPF do locatário: ')
-IdLocatario = input('Digite o ID do locatário: ')
+CargoLocatario = input('Digite o cargo do locatário: ')
 RendaLocatario = input('Digite a renda do locatário: ')
 DataInicioContrato = input('Digite a data de início do contrato (DD/MM/AAAA): ')
 ValorAluguel = input('Digite o valor do aluguel: ')
