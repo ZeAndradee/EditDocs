@@ -40,11 +40,12 @@ RendaLocatario = input('Digite a renda do locatário: ')
 DataInicioContrato = input('Digite a data de início do contrato (DD/MM/AAAA): ')
 ValorAluguel = input('Digite o valor do aluguel: ')
 
-
+#Formata a data de inicio do contrato
 dia, mes, ano = DataInicioContrato.split("/")
 DataInicioContratoF = datetime.date(int(ano), int(mes), int(dia))
 mesInicioContrato = DataInicioContratoF.strftime("%B")
 
+#Formata a data de fim do contrato (6 meses a frente)
 DataSeisMesesFrente = DataInicioContratoF + relativedelta(months=+6)
 DataSeisMesesFrenteF = DataSeisMesesFrente.strftime("%d/%m/%Y")
 fdia, fmes, fano = DataSeisMesesFrenteF.split("/")
